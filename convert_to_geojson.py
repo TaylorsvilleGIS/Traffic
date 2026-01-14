@@ -9,10 +9,10 @@ base_url = "https://api.tomtom.com/traffic/services/4/flowSegmentData/relative0/
 api_key = os.getenv('tomtom_key')
 
 # Path to the CSV file in your GitHub repository
-csv_url = "https://raw.githubusercontent.com/TaylorsvilleGIS/Traffic/refs/heads/main/road_midpoints.csv?token=GHSAT0AAAAAADTHUU43I6OQ6KAF4GVUFGG62LH67SQ"
+# csv_url = "https://raw.githubusercontent.com/TaylorsvilleGIS/Traffic/refs/heads/main/road_midpoints.csv?token=GHSAT0AAAAAADTHUU43I6OQ6KAF4GVUFGG62LH67SQ"
 
 # Read the CSV file
-df = pd.read_csv(csv_url)
+df = pd.read_csv("road_midpoints.csv")
 
 # Initialize GeoJSON structure
 geojson = {
