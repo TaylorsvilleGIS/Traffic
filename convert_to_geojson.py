@@ -16,9 +16,7 @@ OUTPUT_FILE = "traffic_data.geojson"
 # Validation
 # ----------------------------
 
-if not TOMTOM_KEY:
-    print("ERROR: TOMTOM_KEY environment variable not set")
-    exit(1)
+
 
 # ----------------------------
 # Load CSV
