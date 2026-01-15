@@ -13,6 +13,8 @@ api_key = os.getenv('TOMTOM_KEY')
 
 # Read the CSV file
 df = pd.read_csv("road_midpoints.csv")
+print("CSV rows:", len(df))
+
 
 # Initialize GeoJSON structure
 geojson = {
@@ -55,6 +57,7 @@ for index, row in df.iterrows():
                 }
             }
             geojson["features"].append(feature)
+print("Features created:", len(features))
 
 # Save the GeoJSON to a file
 with open('traffic_data.geojson', 'w') as f:
