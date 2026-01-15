@@ -57,7 +57,8 @@ for index, row in df.iterrows():
                 }
             }
             geojson["features"].append(feature)
-print("Features created:", len(features))
+print("Features created:", len(geojson["features"]))
+
 
 # Save the GeoJSON to a file
 with open('traffic_data.geojson', 'w') as f:
