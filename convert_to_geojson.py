@@ -7,7 +7,7 @@ import pandas as pd
 # Config
 # ----------------------------
 
-TOMTOM_KEY = os.getenv("TOMTOM_KEY")
+tomtom_key = os.getenv("tomtom_key")
 
 CSV_URL = "https://raw.githubusercontent.com/TaylorsvilleGIS/Traffic/main/road_midpoints.csv"
 OUTPUT_FILE = "traffic_data.geojson"
@@ -16,7 +16,9 @@ OUTPUT_FILE = "traffic_data.geojson"
 # Validation
 # ----------------------------
 
-
+if not tomtom_key:
+    print("ERROR: tomtom_key environment variable not set")
+    exit(1)
 
 # ----------------------------
 # Load CSV
@@ -43,7 +45,7 @@ for idx, row in df.iterrows():
 
     url = (
         "https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json"
-        f"?point={lat},{lon}&key={TOMTOM_KEY}"
+        f"?point={lat},{lon}&key={tomtom_key}"
     )
 
     try:
