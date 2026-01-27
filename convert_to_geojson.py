@@ -9,7 +9,7 @@ import pandas as pd
 
 tomtom_key = os.getenv("tomtom_key")
 
-CSV_URL = "https://raw.githubusercontent.com/TaylorsvilleGIS/Traffic/refs/heads/main/road_midpoints1.csv"
+CSV_URL = "https://raw.githubusercontent.com/TaylorsvilleGIS/Traffic/refs/heads/main/traffic_probesv1.csv"
 OUTPUT_FILE = "traffic_data.geojson"
 
 # ----------------------------
