@@ -57,6 +57,15 @@ for idx, row in df.iterrows():
         if not segment:
             continue
 
+        current_speed = segment.get("currentSpeed")
+        free_flow_speed = segment.get("freeFlowSpeed")
+
+        # Avoid divide-by-zero and missing values
+        if current_speed is not None and free_flow_speed not in (None, 0):
+            speed_ratio = round(current_speed / free_flow_speed, 2)
+        else:
+            speed_ratio = None
+
         coordinates = segment["coordinates"]["coordinate"]
 
         line = [
@@ -71,9 +80,10 @@ for idx, row in df.iterrows():
                 "coordinates": line
             },
             "properties": {
-                "currentSpeed": segment.get("currentSpeed"),
-                "freeFlowSpeed": segment.get("freeFlowSpeed"),
-                "confidence": segment.get("confidence")
+                "currentSpeed": current_speed,
+                "freeFlowSpeed": free_flow_speed,
+                "confidence": segment.get("confidence"),
+                "speed_ratio": speed_ratio
             }
         }
 
