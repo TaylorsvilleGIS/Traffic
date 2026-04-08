@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # Taylorsville forecast endpoint
 url = "https://api.weather.gov/gridpoints/SLC/98,171/forecast"
@@ -16,7 +17,7 @@ data = response.json()
 periods = data['properties']['periods'][:5]
 
 # Timestamp
-now = datetime.now().strftime("%m/%d/%Y %I:%M %p")
+now = datetime.now(ZoneInfo("America/Denver")).strftime("%m/%d/%Y %I:%M %p %Z")
 
 # HTML content
 html_content = f"""
