@@ -3,9 +3,9 @@ name: Update Traffic GeoJSON
 on:
   schedule:
     # Runs every 10 minutes from 6 AM to ~10 PM Mountain Time (UTC, DST-adjusted)
-    - cron: '*/10 12-22 * * *'
-    - cron: '*/10 23 * * *'
-    - cron: '*/10 0-3 * * *'
+    - cron: '*/20 12-22 * * *'
+    - cron: '*/20 23 * * *'
+    - cron: '*/20 0-3 * * *'
   workflow_dispatch:
 
 jobs:
