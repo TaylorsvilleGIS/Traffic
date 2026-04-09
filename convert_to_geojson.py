@@ -3,7 +3,7 @@ import json
 import requests
 import pandas as pd
 from datetime import datetime 
-from ZoneInfo import ZoneInfo
+from zoneinfo import ZoneInfo
 
 # ----------------------------
 # Config
