@@ -2,6 +2,8 @@ import os
 import json
 import requests
 import pandas as pd
+from datetime import datetime 
+from ZoneInfo import ZoneInfo
 
 # ----------------------------
 # Config
@@ -36,6 +38,11 @@ if not {"Latitude", "Longitude"}.issubset(df.columns):
 # ----------------------------
 # Build GeoJSON Features
 # ----------------------------
+
+#-----------------------------
+# TimeStamp
+#-----------------------------
+updated_at = datetime.now(ZoneInfo("America/Denver")).strftime("%m/%d/%Y %I:%M %p")
 
 features = []
 
@@ -83,7 +90,8 @@ for idx, row in df.iterrows():
                 "currentSpeed": current_speed,
                 "freeFlowSpeed": free_flow_speed,
                 "confidence": segment.get("confidence"),
-                "speed_ratio": speed_ratio
+                "speed_ratio": speed_ratio,
+                "updatedAt": updated_at
             }
         }
 
