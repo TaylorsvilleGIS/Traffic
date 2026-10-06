@@ -1,11 +1,15 @@
 name: Update Traffic GeoJSON
 
+permissions:
+  contents: write
+
 on:
   schedule:
-    # Runs every 20 minutes from 6 AM to ~10 PM Mountain Time (UTC, DST-adjusted)
-    - cron: '*/20 12-22 * * *'
-    - cron: '*/20 23 * * *'
-    - cron: '*/20 0-3 * * *'
+    # Every 20 minutes from 6:07 AM through 8:47 PM Mountain Time.
+    # America/Denver automatically accounts for daylight saving time.
+    - cron: '7,27,47 6-20 * * *'
+      timezone: 'America/Denver'
+
   workflow_dispatch:
 
 jobs:
@@ -14,10 +18,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -37,7 +41,10 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add traffic_data.geojson
-          git commit -m "Update traffic GeoJSON" || echo "No changes to commit"
-          git push origin main || echo "Nothing to push"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update traffic GeoJSON"
+            git push origin main
+          fi
